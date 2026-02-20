@@ -59,7 +59,7 @@ const CarDetail: React.FC = () => {
     }
 
     try {
-      const response = await apiRequest('https://arth-zqya.onrender.com/api/bookings', {
+      const response = await apiRequest('/api/bookings', {
         method: 'POST',
         body: JSON.stringify({
           carId: car.id,
@@ -76,13 +76,17 @@ const CarDetail: React.FC = () => {
         }),
       });
 
-      const data = await response.json();
+      const raw = await response.text();
+      const data = raw ? JSON.parse(raw) : null;
 
-      if (data.success) {
+      if (response.ok && data?.success) {
         alert('Booking created successfully!');
         navigate('/bookings', { state: { newBooking: true } });
       } else {
-        alert(data.message || 'Failed to create booking');
+        const message =
+          data?.message ||
+          (response.ok ? 'Failed to create booking' : `Request failed (${response.status})`);
+        alert(message);
       }
     } catch (error) {
       console.error('Booking error:', error);

@@ -25,11 +25,15 @@ const Bookings: React.FC = () => {
 
   const fetchUserBookings = async () => {
     try {
-      const response = await apiRequest('https://arth-zqya.onrender.com/api/bookings/my-bookings');
+      const response = await apiRequest('/api/bookings/my-bookings');
       const data = await response.json();
 
       if (data.success) {
-        setBookings(data.bookings);
+        const bookingsWithId = (data.bookings || []).map((booking: any) => ({
+          ...booking,
+          id: booking.id || booking._id,
+        }));
+        setBookings(bookingsWithId);
       }
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -71,7 +75,7 @@ const Bookings: React.FC = () => {
 
   const cancelBooking = async (bookingId: string) => {
     try {
-      const response = await apiRequest(`https://arth-zqya.onrender.com/api/bookings/${bookingId}`, {
+      const response = await apiRequest(`/api/bookings/${bookingId}`, {
         method: 'DELETE',
       });
 

@@ -5,16 +5,51 @@ require("dotenv").config();
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 // Connect to MongoDB
 connectDB();
+
+const parseOrigins = (value) =>
+  String(value || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+const envAllowedOrigins = parseOrigins(process.env.CORS_ORIGINS);
+const fallbackOrigins =
+  process.env.NODE_ENV === "production"
+    ? []
+    : ["http://localhost:5173", "http://localhost:3000"];
+
+const allowedOrigins = envAllowedOrigins.length ? envAllowedOrigins : fallbackOrigins;
+
+if (process.env.NODE_ENV === "production" && allowedOrigins.length === 0) {
+  console.warn(
+    "CORS_ORIGINS is not set. Cross-origin browser requests may fail in production.",
+  );
+}
 
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://arth-zqya.onrender.com"], // Vite default ports
-    credentials: true,
+    origin: (origin, callback) => {
+      // Allow non-browser requests (curl, server-to-server) that send no Origin
+      if (!origin) return callback(null, true);
+
+      // If no allowlist configured (common in dev), allow all origins
+      if (allowedOrigins.length === 0) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(null, false);
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: false,
   }),
 );
+
+app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

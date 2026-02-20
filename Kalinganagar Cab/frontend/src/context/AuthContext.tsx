@@ -1,6 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '../types';
 
+const envApiBaseUrl = (import.meta as any).env?.VITE_API_BASE_URL ?? '';
+const API_BASE_URL =
+  envApiBaseUrl ||
+  ((import.meta as any).env?.DEV ? 'https://kalinganagar-cab.onrender.com' : '');
+
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
@@ -53,6 +58,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const apiRequest = async (url: string, options: RequestInit = {}) => {
     const token = getToken();
 
+    const finalUrl =
+      /^https?:\/\//i.test(url)
+        ? url
+        : `${API_BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
+
     const config = {
       ...options,
       headers: {
@@ -62,16 +72,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       },
     };
 
-    return fetch(url, config);
+    return fetch(finalUrl, config);
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      const response = await fetch('https://kalinganagar-cab.onrender.com/api/auth/login', {
+      const response = await apiRequest('/api/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, password }),
       });
 
@@ -94,11 +101,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const register = async (email: string, password: string, name: string, phone: string): Promise<boolean> => {
     try {
-      const response = await fetch('https://arth-zqya.onrender.com/api/auth/register', {
+      const response = await apiRequest('/api/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ name, email, phone, password }),
       });
 
