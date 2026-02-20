@@ -111,7 +111,7 @@ const CarDetail: React.FC = () => {
             <ArrowLeft className="w-5 h-5" />
             <span>Back to Home</span>
           </button>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
                 Book a Car
@@ -126,8 +126,8 @@ const CarDetail: React.FC = () => {
         </div>
       </div>
 
-      <div className="px-4 py-8 mx-auto max-w-3xl sm:px-6 lg:px-8">
-        <div className="p-6 bg-white rounded-xl shadow-lg">
+      <div className="max-w-3xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+        <div className="p-6 bg-white shadow-lg rounded-xl">
           <h2 className="mb-6 text-2xl font-bold text-gray-900">Book This Car</h2>
 
           <div className="space-y-4">
@@ -139,7 +139,7 @@ const CarDetail: React.FC = () => {
                 type="text"
                 value={bookingData.customerName}
                 onChange={(e) => setBookingData({ ...bookingData, customerName: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter customer name"
                 required
               />
@@ -152,7 +152,7 @@ const CarDetail: React.FC = () => {
                 type="email"
                 value={bookingData.email}
                 onChange={(e) => setBookingData({ ...bookingData, email: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter email address"
                 required
               />
@@ -165,12 +165,12 @@ const CarDetail: React.FC = () => {
                 type="tel"
                 value={bookingData.phone}
                 onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter phone number"
                 required
               />
             </div>
-            <div>
+            {/* <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Driving License Number *
               </label>
@@ -178,12 +178,12 @@ const CarDetail: React.FC = () => {
                 type="text"
                 value={bookingData.drivingLicenseNumber}
                 onChange={(e) => setBookingData({ ...bookingData, drivingLicenseNumber: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter driving license number"
                 required
               />
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 License Expiry Date *
               </label>
@@ -191,10 +191,10 @@ const CarDetail: React.FC = () => {
                 type="date"
                 value={bookingData.licenseExpiryDate}
                 onChange={(e) => setBookingData({ ...bookingData, licenseExpiryDate: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 required
               />
-            </div>
+            </div> */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Pickup Location *
@@ -203,7 +203,7 @@ const CarDetail: React.FC = () => {
                 type="text"
                 value={bookingData.pickupLocation}
                 onChange={(e) => setBookingData({ ...bookingData, pickupLocation: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter pickup location"
                 required
               />
@@ -217,7 +217,7 @@ const CarDetail: React.FC = () => {
                 type="text"
                 value={bookingData.dropoffLocation}
                 onChange={(e) => setBookingData({ ...bookingData, dropoffLocation: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Same as pickup location"
               />
             </div>
@@ -230,7 +230,7 @@ const CarDetail: React.FC = () => {
                 type="date"
                 value={bookingData.startDate}
                 onChange={(e) => setBookingData({ ...bookingData, startDate: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 min={new Date().toISOString().split('T')[0]}
                 required
               />
@@ -244,7 +244,7 @@ const CarDetail: React.FC = () => {
                 type="date"
                 value={bookingData.endDate}
                 onChange={(e) => setBookingData({ ...bookingData, endDate: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 min={bookingData.startDate || new Date().toISOString().split('T')[0]}
                 required
               />
@@ -257,13 +257,13 @@ const CarDetail: React.FC = () => {
               <textarea
                 value={bookingData.remark}
                 onChange={(e) => setBookingData({ ...bookingData, remark: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Any additional remarks"
                 rows={3}
               />
             </div>
 
-            <div>
+            {/* <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Aadhaar Card Number *
               </label>
@@ -271,28 +271,28 @@ const CarDetail: React.FC = () => {
                 type="text"
                 value={bookingData.aadhaarCardNumber}
                 onChange={(e) => setBookingData({ ...bookingData, aadhaarCardNumber: e.target.value })}
-                className="p-3 w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter Aadhaar card number"
                 required
               />
-            </div>
+            </div> */}
 
             <div className="pt-4 border-t">
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600">Daily Rate</span>
                 <span className="font-semibold">₹{car.pricePerDay}</span>
               </div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600">Duration</span>
                 <span className="font-semibold">{calculateDays()} days</span>
               </div>
-              <div className="flex justify-between items-center pt-2 text-lg font-bold border-t">
+              <div className="flex items-center justify-between pt-2 text-lg font-bold border-t">
                 <span>Total Amount</span>
                 <span className="text-blue-600">₹{totalPrice}</span>
               </div>
             </div>
 
-            <div className="p-4 mt-4 bg-yellow-50 border-l-4 border-yellow-400">
+            <div className="p-4 mt-4 border-l-4 border-yellow-400 bg-yellow-50">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <svg className="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
@@ -323,7 +323,7 @@ const CarDetail: React.FC = () => {
                   type="checkbox"
                   checked={termsAccepted}
                   onChange={(e) => setTermsAccepted(e.target.checked)}
-                  className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -335,7 +335,7 @@ const CarDetail: React.FC = () => {
 
             <button
               onClick={handleBooking}
-              className="px-6 py-3 w-full font-semibold text-white bg-blue-600 rounded-lg transition-colors hover:bg-blue-700"
+              className="w-full px-6 py-3 font-semibold text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
             >
               Book Now
             </button>
