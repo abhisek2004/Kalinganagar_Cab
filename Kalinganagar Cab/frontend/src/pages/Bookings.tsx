@@ -71,7 +71,7 @@ const Bookings: React.FC = () => {
 
   const cancelBooking = async (bookingId: string) => {
     try {
-      const response = await apiRequest(`http://localhost:5000/api/bookings/${bookingId}`, {
+      const response = await apiRequest(`https://arth-zqya.onrender.com/api/bookings/${bookingId}`, {
         method: 'DELETE',
       });
 

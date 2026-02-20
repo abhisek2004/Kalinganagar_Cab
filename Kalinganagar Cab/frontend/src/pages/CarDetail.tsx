@@ -59,7 +59,7 @@ const CarDetail: React.FC = () => {
     }
 
     try {
-      const response = await apiRequest('http://localhost:5000/api/bookings', {
+      const response = await apiRequest('https://arth-zqya.onrender.com/api/bookings', {
         method: 'POST',
         body: JSON.stringify({
           carId: car.id,
