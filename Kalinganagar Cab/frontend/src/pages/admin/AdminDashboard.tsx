@@ -48,7 +48,7 @@ const AdminDashboard: React.FC = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await apiRequest('http://localhost:5000/api/bookings');
+      const response = await apiRequest('https://arth-zqya.onrender.com/api/bookings');
       const data = await response.json();
 
       if (data.success) {
@@ -180,7 +180,7 @@ const AdminDashboard: React.FC = () => {
 
   const updateBookingStatus = async (bookingId: string, status: string) => {
     try {
-      const response = await apiRequest(`http://localhost:5000/api/bookings/${bookingId}/status`, {
+      const response = await apiRequest(`https://arth-zqya.onrender.com/api/bookings/${bookingId}/status`, {
         method: 'PUT',
         body: JSON.stringify({ status }),
       });

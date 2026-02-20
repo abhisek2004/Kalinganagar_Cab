@@ -25,7 +25,7 @@ const Bookings: React.FC = () => {
 
   const fetchUserBookings = async () => {
     try {
-      const response = await apiRequest('http://localhost:5000/api/bookings/my-bookings');
+      const response = await apiRequest('https://arth-zqya.onrender.com/api/bookings/my-bookings');
       const data = await response.json();
 
       if (data.success) {
