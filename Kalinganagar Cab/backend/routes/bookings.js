@@ -18,9 +18,6 @@ router.post("/", protect, async (req, res) => {
       customerName,
       email,
       phone,
-      drivingLicenseNumber,
-      licenseExpiryDate,
-      aadhaarCardNumber,
       remark,
       totalPrice,
     } = req.body;
@@ -35,9 +32,6 @@ router.post("/", protect, async (req, res) => {
       !customerName ||
       !email ||
       !phone ||
-      !drivingLicenseNumber ||
-      !licenseExpiryDate ||
-      !aadhaarCardNumber ||
       !totalPrice
     ) {
       return res.status(400).json({
@@ -57,9 +51,6 @@ router.post("/", protect, async (req, res) => {
       customerName,
       email,
       phone,
-      drivingLicenseNumber,
-      licenseExpiryDate,
-      aadhaarCardNumber,
       remark,
       totalPrice,
     });
@@ -85,7 +76,7 @@ router.get("/", protect, admin, async (req, res) => {
   try {
     const bookings = await Booking.find().populate(
       "userId",
-      "name email phone"
+      "name email phone",
     );
 
     res.status(200).json({
@@ -133,7 +124,7 @@ router.put("/:id/status", protect, admin, async (req, res) => {
     const booking = await Booking.findByIdAndUpdate(
       req.params.id,
       { status },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!booking) {

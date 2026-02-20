@@ -11,9 +11,7 @@ interface BookingDetails {
   customerName?: string;
   email?: string;
   phone?: string;
-  drivingLicenseNumber?: string;
-  licenseExpiryDate?: string;
-  aadhaarCardNumber?: string;
+  // identity-related fields removed
   remark?: string;
   totalPrice: number;
   status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
@@ -77,9 +75,7 @@ export const generateTicketPDF = (
   doc.text(`Name: ${booking.customerName || user.name}`, 20, 72);
   doc.text(`Email: ${booking.email || user.email || 'N/A'}`, 20, 79);
   doc.text(`Phone: ${booking.phone || user.phone || 'N/A'}`, 20, 86);
-  doc.text(`Driving License: ${booking.drivingLicenseNumber || 'N/A'}`, 20, 93);
-  doc.text(`License Expiry: ${booking.licenseExpiryDate || 'N/A'}`, 20, 100);
-  doc.text(`Aadhaar Card: ${booking.aadhaarCardNumber || 'N/A'}`, 20, 107);
+  // identity-related fields removed
 
   // Car Info
   doc.setFontSize(14);
@@ -154,11 +150,8 @@ export const generateTicketPDF = (
   
   doc.setFontSize(10);
   doc.setTextColor(55, 65, 81);
-  doc.text('• Valid driving license is mandatory at pickup', 20, 312);
   doc.text('• Minimum age required: 21 years', 20, 319);
-  doc.text('• Driving License Number is mandatory for car rental', 20, 326);
-  doc.text('• License Expiry Date is required', 20, 333);
-  doc.text('• Aadhaar Card details required for processing', 20, 340);
+  // identity-related lines removed
   doc.text('• Fuel charges are not included', 20, 347);
   doc.text('• Cancellation allowed up to 24 hours before pickup', 20, 354);
   doc.text('• Late return will be charged per extra day', 20, 361);

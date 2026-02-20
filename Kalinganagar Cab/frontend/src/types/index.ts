@@ -40,9 +40,7 @@ export interface Booking {
   customerName?: string;
   email?: string;
   phone?: string;
-  drivingLicenseNumber?: string;
-  licenseExpiryDate?: string;
-  aadhaarCardNumber?: string;
+  // identity-related fields removed
   remark?: string;
   totalPrice: number;
   status: 'pending' | 'confirmed' | 'cancelled' | 'completed';

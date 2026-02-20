@@ -310,9 +310,7 @@ const AdminDashboard: React.FC = () => {
         'Customer Name': booking.customerName || (user ? user.name : 'Unknown'),
         'Email': booking.email || (user ? user.email : 'N/A'),
         'Phone': booking.phone || (user ? user.phone : 'N/A'),
-        'Driving License': booking.drivingLicenseNumber || 'N/A',
-        'License Expiry': booking.licenseExpiryDate || 'N/A',
-        'Aadhaar Card': booking.aadhaarCardNumber || 'N/A',
+        // identity-related fields removed
         'Car': car ? `${car.brand} ${car.model}` : 'Unknown',
         'Pickup Location': booking.pickupLocation,
         'Drop-off Location': booking.dropoffLocation,

@@ -39,18 +39,7 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    drivingLicenseNumber: {
-      type: String,
-      required: true,
-    },
-    licenseExpiryDate: {
-      type: Date,
-      required: true,
-    },
-    aadhaarCardNumber: {
-      type: String,
-      required: true,
-    },
+    // identity-related fields removed
     remark: {
       type: String,
     },
@@ -66,7 +55,7 @@ const bookingSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("Booking", bookingSchema);

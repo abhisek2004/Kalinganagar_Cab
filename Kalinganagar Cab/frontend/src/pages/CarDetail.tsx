@@ -16,9 +16,7 @@ const CarDetail: React.FC = () => {
     email: '',
     phone: '',
     remark: '',
-    drivingLicenseNumber: '',
-    licenseExpiryDate: '',
-    aadhaarCardNumber: ''
+    // identity-related fields removed
   });
 
   // Use a default car for demonstration
@@ -49,10 +47,7 @@ const CarDetail: React.FC = () => {
       !bookingData.pickupLocation ||
       !bookingData.customerName ||
       !bookingData.email ||
-      !bookingData.phone ||
-      !bookingData.drivingLicenseNumber ||
-      !bookingData.licenseExpiryDate ||
-      !bookingData.aadhaarCardNumber
+      !bookingData.phone
     ) {
       alert('Please fill in all required fields');
       return;
@@ -77,9 +72,6 @@ const CarDetail: React.FC = () => {
           email: bookingData.email,
           phone: bookingData.phone,
           remark: bookingData.remark,
-          drivingLicenseNumber: bookingData.drivingLicenseNumber,
-          licenseExpiryDate: bookingData.licenseExpiryDate,
-          aadhaarCardNumber: bookingData.aadhaarCardNumber,
           totalPrice,
         }),
       });
@@ -170,31 +162,6 @@ const CarDetail: React.FC = () => {
                 required
               />
             </div>
-            {/* <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Driving License Number *
-              </label>
-              <input
-                type="text"
-                value={bookingData.drivingLicenseNumber}
-                onChange={(e) => setBookingData({ ...bookingData, drivingLicenseNumber: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter driving license number"
-                required
-              />
-            </div> */}
-            {/* <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                License Expiry Date *
-              </label>
-              <input
-                type="date"
-                value={bookingData.licenseExpiryDate}
-                onChange={(e) => setBookingData({ ...bookingData, licenseExpiryDate: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
-            </div> */}
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Pickup Location *
@@ -263,19 +230,6 @@ const CarDetail: React.FC = () => {
               />
             </div>
 
-            {/* <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Aadhaar Card Number *
-              </label>
-              <input
-                type="text"
-                value={bookingData.aadhaarCardNumber}
-                onChange={(e) => setBookingData({ ...bookingData, aadhaarCardNumber: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter Aadhaar card number"
-                required
-              />
-            </div> */}
 
             <div className="pt-4 border-t">
               <div className="flex items-center justify-between mb-2">
@@ -302,11 +256,7 @@ const CarDetail: React.FC = () => {
                 <div className="ml-3">
                   <p className="text-sm text-yellow-700">
                     <strong>Important Information:</strong><br />
-                    • Valid driving license is mandatory at pickup<br />
                     • Minimum age required: 21 years<br />
-                    • Driving License Number is mandatory for car rental<br />
-                    • License Expiry Date is required<br />
-                    • Aadhaar Card details required for processing<br />
                     • Fuel charges are not included<br />
                     • Cancellation allowed up to 24 hours before pickup<br />
                     • Late return will be charged per extra day<br />
