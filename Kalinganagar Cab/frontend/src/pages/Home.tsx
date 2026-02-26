@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import CarCard from '../components/CarCard';
+import BookingForm from '../components/BookingForm';
 import { mockCars } from '../data/mockData';
 import { Car, Zap, Shield, Clock } from 'lucide-react';
 
@@ -12,6 +13,19 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Hero />
+      
+      {/* Booking Form Section on Home */}
+      <section className="bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+            Book Your Car Now
+          </h2>
+          <p className="text-center text-gray-600 mb-8">
+            Fill in your details below to reserve your car instantly.
+          </p>
+          <BookingForm showBackButton={false} />
+        </div>
+      </section>
       
       {/* Features Section */}
       <section className="py-20 bg-gray-50">
