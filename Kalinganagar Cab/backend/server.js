@@ -34,12 +34,8 @@ if (process.env.NODE_ENV === "production" && allowedOrigins.length === 0) {
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow non-browser requests (curl, server-to-server) that send no Origin
       if (!origin) return callback(null, true);
-
-      // If no allowlist configured (common in dev), allow all origins
       if (allowedOrigins.length === 0) return callback(null, true);
-
       if (allowedOrigins.includes(origin)) return callback(null, true);
       return callback(null, false);
     },
@@ -49,7 +45,13 @@ app.use(
   }),
 );
 
-app.options("*", cors());
+// Handle preflight OPTIONS requests for all routes
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
